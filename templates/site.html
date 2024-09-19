@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Приглашение на День Рождения</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden; /* Предотвращает горизонтальную прокрутку */
+        }
+        .header {
+            background: url('https://img.freepik.com/free-vector/hand-drawn-birthday-background_23-2148895676.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #fff;
+            text-align: center;
+            padding: 50px 0;
+            font-size: 36px;
+            height: 100vh; /* Занимает весь экран */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            position: relative;
+        }
+        .header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.4); /* Полупрозрачный черный фон для текста */
+            z-index: 1;
+        }
+        .header h1 {
+            position: relative;
+            z-index: 2;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 1s ease-in-out;
+            animation: fadeIn 2s ease-in-out forwards;
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .content {
+            padding: 20px;
+            margin: 0 auto;
+            max-width: 800px;
+            text-align: center;
+        }
+        .content h2 {
+            font-size: 28px;
+            color: #666;
+            margin: 40px 0 20px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 1s ease-in-out;
+        }
+        .place {
+            font-size: 22px;
+            color: #444;
+            margin-top: 30px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 1s ease-in-out;
+        }
+        .fade-in {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1 id="header-text">Дорогой гость, я приглашаю тебя на своё день рождения!</h1>
+    </div>
+
+    <div class="content">
+        <h2 id="fade-in-text">Место, где будет проходить день рождения:</h2>
+        <div class="place" id="fade-in-place">
+            <p><strong>Дата:</strong> 28 сентября, суббота</p>
+            <p><strong>Время:</strong> 18:00 по МСК</p>
+            <p><strong>Место:</strong> Антикафе "Параграф", пр. имени В.И. Ленина, 27Б</p>
+        </div>
+    </div>
+
+    <script>
+        function onScroll() {
+            const fadeInText = document.getElementById('fade-in-text');
+            const fadeInPlace = document.getElementById('fade-in-place');
+            const scrollPosition = window.scrollY + window.innerHeight;
+
+            if (fadeInText.getBoundingClientRect().top + window.scrollY < scrollPosition) {
+                fadeInText.classList.add('fade-in');
+            }
+            if (fadeInPlace.getBoundingClientRect().top + window.scrollY < scrollPosition) {
+                fadeInPlace.classList.add('fade-in');
+            }
+        }
+
+        window.addEventListener('scroll', onScroll);
+    </script>
+</body>
+</html>
